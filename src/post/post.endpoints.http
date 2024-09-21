@@ -1,1 +1,27 @@
 GET {{URL}}/post/1235
+
+# create new post
+POST {{URL}}/post
+Content-Type: application/json
+
+{
+  "title": "what is nest js",
+  "postType": "post",
+  "slug": "what-is-nest-js",
+  "status": "draft",
+  "content": "NestJS is a progressive Node.js framework for building efficient and scalable server-side applications.",
+  "schema": "{\"type\":\"post\",\"fields\":{\"title\":\"what is nest js\"}}",
+  "feautredImageUrl": "https://example.com/nestjs.jpg",
+  "publishedOn": "2024-09-21",
+  "tags": ["nestjs", "nodejs", "framework"],
+  "metaOptions": [
+    {
+      "key": "",
+      "value": "A brief intro to NestJS"
+    },
+    {
+      "key": "keywords",
+      "value": "NestJS, Node.js, Framework"
+    }
+  ]
+}

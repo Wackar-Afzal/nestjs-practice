@@ -12,7 +12,7 @@ export class PostController {
    public getposts(@Param() getPostParamDto: GetPostParamDto){
     return this.postService.findAll(getPostParamDto.id)
    }
-   @Post('/new')
+   @Post()
    public createPost(@Body() createPostDto:CreatePostDto){
       return "helo bhai g"
    }
