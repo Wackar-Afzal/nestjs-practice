@@ -11,12 +11,12 @@ export class CreatePostDto{
     @MinLength(4)
     title:string;
 
-    @ApiProperty()
+    @ApiProperty({enum:postType,description:"Post type should be string and is enum",example:"page"})
     @IsNotEmpty({message:"Please provide title of post"})
     @IsEnum(postType, { message: "Post type should be one of 'post', 'page', 'story', 'series'" })
     postType:postType;
 
-    @ApiProperty()
+    @ApiProperty({description:""})
     @IsNotEmpty({message:"Please provide slug of post"})
     @IsString({message:"slug should of type string"})
     @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/,{message:'slug should be small letters and uses only "-" without spaces forexample "my-url" '})

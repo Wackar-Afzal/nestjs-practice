@@ -16,7 +16,7 @@ Content-Type: application/json
   "tags": ["nestjs", "nodejs", "framework"],
   "metaOptions": [
     {
-      "key": "",
+      "key": "description",
       "value": "A brief intro to NestJS"
     },
     {
