@@ -1,0 +1,6 @@
+PATCH {{URL}}/post
+Content-Type: application/json
+{
+    "id":123,
+    "postType":"qwa"
+}
