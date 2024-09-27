@@ -119,6 +119,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service that handles operations related to Users.</p>
+
+            </p>
 
 
 
@@ -166,7 +173,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/users/providers/user.services.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/users/providers/user.services.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -231,14 +238,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/users/providers/user.services.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/users/providers/user.services.ts:36</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>getting single user by using user id</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -300,14 +309,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/users/providers/user.services.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="23"
+                                    class="link-to-prism">src/users/providers/user.services.ts:23</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Fetches all users.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -318,6 +329,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -332,6 +344,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Parameters for getting users.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>limit</td>
@@ -344,6 +362,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Maximum number of users to fetch.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>page</td>
@@ -356,6 +380,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Page number for pagination.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -365,7 +395,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>A list of users.</p>
+
                             </div>
                 </td>
             </tr>
@@ -381,14 +412,24 @@
 import { GetUserParamsDto } from &quot;../dtos/get-user-params.dto&quot;;
 import { AuthService } from &quot;src/auth/providers/auth.service&quot;;
 
+    /**
+     * Service that handles operations related to Users.
+     */
+
 @Injectable()
 export class UserService{
-
+//
     constructor(
         @Inject(forwardRef(()&#x3D;&gt;AuthService))
         private readonly authService:AuthService
 ){}
-
+   /**
+     * Fetches all users.
+     * @param getUserParamsDto - Parameters for getting users.
+     * @param limit - Maximum number of users to fetch.
+     * @param page - Page number for pagination.
+     * @returns A list of users.
+     */
     public getAllUsers(getUserParamsDto:GetUserParamsDto,limit:number,page:number){
         return[
             {name:&quot;waqar&quot;,
@@ -399,6 +440,9 @@ export class UserService{
             },
         ]
     }
+    /**
+     * getting single user by using user id
+     */
     public findOneById(userId:number){
         const authenticated&#x3D;this.authService.isAuth(userId)
         console.log(userId,&quot;userid in user service&quot;)
