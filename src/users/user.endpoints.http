@@ -6,6 +6,7 @@
  Content-Type:application/json
  {
     "name":"waqar",
-    "email":"hellp@waqar.com"
+    "email":"hellp@waqar.com",
+    "password":"Waqar@123"
 
  }

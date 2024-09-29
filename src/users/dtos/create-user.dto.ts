@@ -8,11 +8,13 @@ export class CreateUserDtO {
 
     @IsNotEmpty({message:"email can not empty"})
     @IsEmail()
+    @MaxLength(96,{message:"email can not exceed 96 characters"})
     email:string;
 
     @IsNotEmpty({message:"Password should not be empty"})
     @IsString()
     @MinLength(8,{message:"Paswword should be 8 chracter"})
+    @MaxLength(96,{message:"password can not exceed 96 characters"})
     @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/,{message:"password should contain atleast one upper casse, one special character, one digit"})
     password:string;
 

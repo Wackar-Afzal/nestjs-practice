@@ -20,8 +20,7 @@ export class UsersController {
     }
     @Post()
     public createUsers(@Body() createUserDtO:CreateUserDtO){
-        console.log(createUserDtO,"body")
-        return "create user api was request"
+        return this.userService.createUser(createUserDtO)
     }
     @Patch()
     public updateUsers(@Body() updateUserDto:UpdateUserDto){

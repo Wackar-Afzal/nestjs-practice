@@ -1,13 +1,14 @@
 import { Type } from "class-transformer";
-import { ArrayMinSize, ArrayNotEmpty, IsArray, IsDate, IsEnum, IsISO8601, IsJSON, IsNotEmpty, IsObject, IsOptional, IsString, IsUrl, Matches, MinLength, ValidateNested } from "class-validator";
+import { ArrayMinSize, ArrayNotEmpty, IsArray, IsDate, IsEnum, IsISO8601, IsJSON, IsNotEmpty, IsObject, IsOptional, IsString, IsUrl, Matches, MaxLength, maxLength, MinLength, ValidateNested } from "class-validator";
 import { postType } from "../enums/postType.enum";
 import { status } from "../enums/status.enum";
-import { CreateMetaOptionDto } from "./create-metaoptions.dto";
+import { CreateMetaOptionDto } from "../../meta-options/dtos/create-metaoptions.dto";
 import { ApiProperty } from "@nestjs/swagger";
 export class CreatePostDto{
     @ApiProperty({description:"Title should of type string",example:"this is example"})
     @IsNotEmpty({message:"Please provide title of post"})
     @IsString({message:"Title should of type string"})
+    @MaxLength(512)
     @MinLength(4)
     title:string;
 
@@ -19,6 +20,7 @@ export class CreatePostDto{
     @ApiProperty({description:"string having small letters and - should be used instead of space ",example:"my-first-post"})
     @IsNotEmpty({message:"Please provide slug of post"})
     @IsString({message:"slug should of type string"})
+    @MaxLength(512)
     @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/,{message:'slug should be small letters and uses only "-" without spaces forexample "my-url" '})
     slug:string;
 
@@ -41,6 +43,7 @@ export class CreatePostDto{
     @ApiProperty({required: false,description:"url of image which is to e displayed in this post",example:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvIk0nTT-VhxRW8wgWHbzQ-6KPKvSt33DcHQ&s"})
     @IsUrl()
     @IsOptional()
+    @MaxLength(1024)
     feautredImageUrl?:string;
 
     @ApiProperty({required: false,description: "Date on which post will be published",example: "2024-09-30T12:30:00Z"  })
@@ -57,6 +60,7 @@ export class CreatePostDto{
   @IsArray({ message: "Tags should be an array" })
   @IsString({ each: true, message: "Each tag should be a string" })  // Ensures each item in the array is a string
   @MinLength(3, { each: true, message: "Each tag should be of minimum 3 characters" })
+  @MaxLength(256)
   tags?: string[];
   
   @ApiProperty({
