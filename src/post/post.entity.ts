@@ -1,11 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { postType } from './enums/postType.enum';
 import { status } from './enums/status.enum';
+import { CreateMetaOptionDto } from 'src/meta-options/dtos/create-metaoptions.dto';
+import { MetaOption } from 'src/meta-options/meta-options.entity';
+import { User } from 'src/users/user.entity';
+import { Tag } from 'src/tags/tag.entity';
 
 @Entity()
 export class Post {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column({
     type: 'varchar',
@@ -63,9 +67,15 @@ export class Post {
   })
   publishedOn?: Date;
 
-  @Column({
-    type: 'simple-array',
-    nullable: true,
-  })
-  tags?: string[];
+  @OneToOne(()=>MetaOption,(metaOption)=>metaOption.post,{cascade:true,eager:true})
+  // @OneToOne(()=>MetaOption,{cascade:['remove','insert']})
+  metaOptions?:MetaOption;
+  
+  @ManyToOne(()=>User, (user)=>user.posts,{eager:true})
+  author:User;
+
+
+  @ManyToMany(() => Tag, (tag) => tag.posts, { eager: true,})
+  @JoinTable()
+  tags?: Tag[];
 }

@@ -11,14 +11,18 @@ export class UsersController {
 
     constructor(private readonly userService:UserService){}
     @Get('/:id?')
-    @ApiOperation({summary:"fetches useron base of id and queries"})
-    @ApiResponse({status:200,description:"userfetched sucessfully"})
+    @ApiOperation({summary:"fetches user on base of id and queries"})
+    @ApiResponse({status:200,description:"user fetched sucessfully"})
     @ApiQuery({name:"limit",type:"number",required:false,example:12,description:"number of entries return for queries"})
     @ApiQuery({name:"page",type:"number",required:false,example:123,description:"number of pages return for queries"})
     public getUsers(@Param() getUserParamsDto:GetUserParamsDto, @Query('limit',new DefaultValuePipe(10),ParseIntPipe) limit:number,@Query('page',ParseIntPipe) page:number){
-        return this.userService.findOneById(getUserParamsDto.id)
+        return this.userService.getAllUsers(getUserParamsDto,limit,page)
     }
+
+
     @Post()
+    @ApiOperation({summary:"creates a new user "})
+    @ApiResponse({status:200,description:"user created sucessfully"})
     public createUsers(@Body() createUserDtO:CreateUserDtO){
         return this.userService.createUser(createUserDtO)
     }

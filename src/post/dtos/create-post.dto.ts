@@ -1,9 +1,9 @@
 import { Type } from "class-transformer";
-import { ArrayMinSize, ArrayNotEmpty, IsArray, IsDate, IsEnum, IsISO8601, IsJSON, IsNotEmpty, IsObject, IsOptional, IsString, IsUrl, Matches, MaxLength, maxLength, MinLength, ValidateNested } from "class-validator";
+import { ArrayMinSize, ArrayNotEmpty, IsArray, IsDate, IsEnum, IsIn, IsInt, IsISO8601, IsJSON, IsNotEmpty, IsObject, IsOptional, IsString, IsUrl, Matches, MaxLength, maxLength, MinLength, ValidateNested } from "class-validator";
 import { postType } from "../enums/postType.enum";
 import { status } from "../enums/status.enum";
 import { CreateMetaOptionDto } from "../../meta-options/dtos/create-metaoptions.dto";
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 export class CreatePostDto{
     @ApiProperty({description:"Title should of type string",example:"this is example"})
     @IsNotEmpty({message:"Please provide title of post"})
@@ -34,7 +34,7 @@ export class CreatePostDto{
     @IsOptional()
     content?:string;
 
-    @ApiProperty({required: false,description:"schema should be a valid json",example:"{'key1':'hello'}"})
+    @ApiProperty({required: false,description:"schema should be a valid json",example:"{\"keySchemaPostDto\": \"value\"}"})
     @IsString({message:"schema should of type string"})
     @IsOptional()
     @IsJSON({message:"schema should be a valid JSON"})
@@ -51,44 +51,40 @@ export class CreatePostDto{
       @IsOptional()
       publishedOn?: Date;
 
-@ApiProperty({
+@ApiPropertyOptional({
     required: false,
-    description: "An array of tags associated with the post. Each tag should be a string and at least 3 characters long.",
-    example: ["tech", "development", "AI"]  
+    description: "An array of ids of tags associated with the post. Each tag should be a number representing tag id",
+    example: [1, 2]  
   })
-  @IsOptional()
-  @IsArray({ message: "Tags should be an array" })
-  @IsString({ each: true, message: "Each tag should be a string" })  // Ensures each item in the array is a string
-  @MinLength(3, { each: true, message: "Each tag should be of minimum 3 characters" })
-  @MaxLength(256)
-  tags?: string[];
-  
-  @ApiProperty({
-    required: false,
-    type:'array',
-    items:{
-      type:'object',
-      properties:{
-        key:{
-          type:"string",
-          description:"key can be any string identifier for you meta option",
-          example:"sidebarEnabled"
-        },
-        value:{
-          type:'any',
-          description:"Any value you want to save to the key",
-          example:true
-        }
-      }
-    },
 
+  
+  @ApiPropertyOptional({
+    description: 'Array of ids of tags passed as integers in an array',
+    example: [1, 2],
   })
   @IsOptional()
-  @IsArray({ message: "Meta option should be an array" })
+  @IsArray()
+  @IsInt({ each: true })
+  tags?: number[];
+  
+  @ApiPropertyOptional({
+    type: 'object',
+      properties: {
+        metaValue: {
+          type: 'json',
+          description: 'The metaValue is a JSON string',
+          example:  '\"{\"sidebarOpened\": true}\"'
+        },
+      },
+  })
+  @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => CreateMetaOptionDto)
-  @ArrayNotEmpty({ message: "Meta option array should not be empty" })
-  @ArrayMinSize(1, { message: "Meta option array must contain at least 1 option" })
-  metaOptions: CreateMetaOptionDto[];
-  
+  metaOptions?: CreateMetaOptionDto | null;
+
+  @ApiProperty({type:"ineger",required:true,example:1})
+  @IsNotEmpty()
+  @IsInt()
+  authorId:number;
+
 }

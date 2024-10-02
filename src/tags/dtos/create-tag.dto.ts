@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { IsJSON, IsNotEmpty, IsOptional, IsString, IsUrl, isURL, Matches, MaxLength, MinLength } from "class-validator";
 
-export class createTagDto{
+export class CreateTagDto{
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
@@ -21,12 +21,12 @@ export class createTagDto{
     @IsOptional()
     description?:string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({description:"sschema should be valid json string",example:"{\"tagSchemaPost\": \"value\"}",})
     @IsJSON()
     @IsOptional()
     schema?:string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({description:"should be a valid url",example:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvIk0nTT-VhxRW8wgWHbzQ-6KPKvSt33DcHQ&s",})
     @IsOptional()
     @IsUrl()
     @MaxLength(1024)

@@ -5,6 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "../user.entity";
 import { Repository } from "typeorm";
 import { CreateUserDtO } from "../dtos/create-user.dto";
+import { ConfigService } from "@nestjs/config";
 
     /**
      * Service that handles operations related to Users.
@@ -12,14 +13,22 @@ import { CreateUserDtO } from "../dtos/create-user.dto";
 
 @Injectable()
 export class UserService{
-/**
- * injecting user repository
- * @param userRepository 
- */
+
+
     constructor(
+            /**
+     * injecting user repository
+     * @param userRepository 
+     */
 
         @InjectRepository(User)
         private userRepository:Repository<User>,
+    /**
+     * injecting config service
+     * @param userRepository 
+     */
+
+    private readonly configService:ConfigService,
 
 ){}
 
@@ -44,6 +53,10 @@ public async createUser(createUserDto:CreateUserDtO){
      * @returns A list of users.
      */
     public getAllUsers(getUserParamsDto:GetUserParamsDto,limit:number,page:number){
+
+        const environment=this.configService.get<string>('URLD')
+        console.log(environment,"environment")
+
         return[
             {name:"waqar",
              email:"waqar@wa.com"
@@ -56,14 +69,8 @@ public async createUser(createUserDto:CreateUserDtO){
     /**
      * getting single user by using user unique id 
      */
-    public findOneById(userId:number){
-        // const authenticated=this.authService.isAuth(userId)
-        // console.log(userId,"userid in user service")
-        return {name:"waqar",
-             email:"waqar@wa.com",
-             id:userId,
-            }
-        
+    public async findOneById(id:number){
+        return await this.userRepository.findOneBy({id})
     }
 
 }
