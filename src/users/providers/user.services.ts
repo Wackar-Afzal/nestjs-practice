@@ -1,11 +1,12 @@
-import { forwardRef, Inject, Injectable } from "@nestjs/common";
+import { BadRequestException, forwardRef, Inject, Injectable, RequestTimeoutException } from "@nestjs/common";
 import { GetUserParamsDto } from "../dtos/get-user-params.dto";
 import { AuthService } from "src/auth/providers/auth.service";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "../user.entity";
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 import { CreateUserDtO } from "../dtos/create-user.dto";
 import { ConfigService } from "@nestjs/config";
+import { TimeoutError } from "rxjs";
 
     /**
      * Service that handles operations related to Users.
@@ -30,6 +31,8 @@ export class UserService{
 
     private readonly configService:ConfigService,
 
+    /**  */
+    private readonly dataSource:DataSource
 ){}
 
 /**
@@ -37,12 +40,38 @@ export class UserService{
  * @param createUserDto 
  */
 public async createUser(createUserDto:CreateUserDtO){
-    const existingUser=await this.userRepository.findOne({
-    where:{email:createUserDto.email}
-    })
+    let existingUser=undefined
+
+    try{
+        existingUser=await this.userRepository.findOne({
+            where:{email:createUserDto.email}
+            })
+    }catch(err){
+        throw new RequestTimeoutException(
+            ['unable to process your request, try again later'],
+            {
+                description:`Something went wrong. errorCode [usrcrte1] ${err}`
+            }
+        )
+    }
+
+    /**
+     * already registered email exception
+     */
+    if(existingUser){
+        throw new BadRequestException(['This email is already registered. please login using that email'])
+    }
 
     let newUser= this.userRepository.create(createUserDto)
-     newUser=await this.userRepository.save(newUser)
+    try{
+        newUser=await this.userRepository.save(newUser)
+    }catch(err){
+        throw new RequestTimeoutException(['unable to process this request, please try again later'],{
+            description:`something went wrong, errorCode [usrcrte2] ${err}`,
+            
+        })
+    }
+    
      return newUser
 }
    /**
@@ -70,7 +99,52 @@ public async createUser(createUserDto:CreateUserDtO){
      * getting single user by using user unique id 
      */
     public async findOneById(id:number){
-        return await this.userRepository.findOneBy({id})
+        let user=undefined;
+        try{
+             user=await this.userRepository.findOneBy({id})
+        }catch(err){
+            throw new RequestTimeoutException(['unable to process this request, please try again later'],{
+                description:`something went wrong, errorCode [usrfnde1] ${err}`,
+                
+            })
+        }
+    /**
+     * user not registered email exception
+     */
+        if(user){
+            return user
+        }else{
+            throw new BadRequestException('The request user is not registered.')
+        }
+    }
+
+    public async createMany(dto:CreateUserDtO[]){
+        let users:User[]=[]
+        // create a query runner
+        let queryRunner=this.dataSource.createQueryRunner();
+        // connect queryrunner to datasource
+        await queryRunner.connect();
+        // start transction
+        await queryRunner.startTransaction()
+        // performing crud
+
+        try{
+            for(let user of dto){
+                let newUser= queryRunner.manager.create(User,user)
+                let result=await queryRunner.manager.save(newUser)
+                users.push(result)
+            }
+            // if sucess commit 
+            await queryRunner.commitTransaction();
+        }catch(err){
+            // trasction failed
+            await queryRunner.rollbackTransaction();
+
+        } finally{
+            // releas the connection with database
+            await queryRunner.release();
+        }
+
     }
 
 }

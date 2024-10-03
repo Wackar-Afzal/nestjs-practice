@@ -10,13 +10,16 @@ import { User } from './users/user.entity';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import appConfig from "./config/app.config"
+import dataBaseConfig from "./config/database.config"
+import envronmentValidation from './config/envronment.validation';
+
 
 const envPath = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}`.trim(): '.env';
 
-
 @Module({
   imports: [UsersModule, PostModule, AuthModule,
-    ConfigModule.forRoot({isGlobal:true,  envFilePath:envPath}),
+    ConfigModule.forRoot({isGlobal:true,  envFilePath:envPath,load:[appConfig,dataBaseConfig],validationSchema:envronmentValidation}),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -26,13 +29,13 @@ const envPath = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}`.trim(): '.
       // entities:[User],
       // logging: true,
       // logger: 'advanced-console',
-      autoLoadEntities:true,
-      synchronize:true,
-      port: +configService.get('DATABASE_PORT'),
-      username:configService.get('DATABASE_USER'),
-      password:configService.get<string>('DATABASE_PASSWORD'),
-      host:configService.get('DATABASE_HOST'),
-      database:configService.get('DATABASE_NAME')  
+      autoLoadEntities:configService.get('database.autoLoadEntities'),
+      synchronize:configService.get('database.synchronize'),
+      port: configService.get('database.port'),
+      username:configService.get('database.user'),
+      password:configService.get('database.password'),
+      host:configService.get('database.host'),
+      database:configService.get('database.name')  
     }
   }
    

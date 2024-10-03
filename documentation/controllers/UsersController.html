@@ -142,8 +142,17 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#createUsers" >createUsers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                <a href="#getUser" >getUser</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -183,6 +192,8 @@
                     <a name="createUsers"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>createUsers</b></span>
                         <a href="#createUsers"><span class="icon ion-ios-link"></span></a>
@@ -200,14 +211,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@Post()<br />@ApiOperation({summary: &#x27;creates a new user &#x27;})<br />@ApiResponse({status: 200, description: &#x27;user created sucessfully&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="22"
-                                    class="link-to-prism">src/users/users.controller.ts:22</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/users/users.controller.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +254,86 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUser"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                        <span ><b>getUser</b></span>
+                        <a href="#getUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/user/:id&#x27;)<br />@ApiOperation({summary: &#x27;fetches user on base of id&#x27;})<br />@ApiResponse({status: 200, description: &#x27;user fetched sucessfully&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/users/users.controller.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
@@ -281,7 +371,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id?&#x27;)<br />@ApiOperation({summary: &#x27;fetches useron base of id and queries&#x27;})<br />@ApiResponse({status: 200, description: &#x27;userfetched sucessfully&#x27;})<br />@ApiQuery({name: &#x27;limit&#x27;, type: &#x27;number&#x27;, required: false, example: 12, description: &#x27;number of entries return for queries&#x27;})<br />@ApiQuery({name: &#x27;page&#x27;, type: &#x27;number&#x27;, required: false, example: 123, description: &#x27;number of pages return for queries&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id?&#x27;)<br />@ApiOperation({summary: &#x27;fetches user on base of id and queries&#x27;})<br />@ApiResponse({status: 200, description: &#x27;user fetched sucessfully&#x27;})<br />@ApiQuery({name: &#x27;limit&#x27;, type: &#x27;number&#x27;, required: false, example: 12, description: &#x27;number of entries return for queries&#x27;})<br />@ApiQuery({name: &#x27;page&#x27;, type: &#x27;number&#x27;, required: false, example: 123, description: &#x27;number of pages return for queries&#x27;})<br /></code>
                 </td>
             </tr>
 
@@ -388,8 +478,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/users/users.controller.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/users/users.controller.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -452,17 +542,27 @@ export class UsersController {
 
     constructor(private readonly userService:UserService){}
     @Get(&#x27;/:id?&#x27;)
-    @ApiOperation({summary:&quot;fetches useron base of id and queries&quot;})
-    @ApiResponse({status:200,description:&quot;userfetched sucessfully&quot;})
+    @ApiOperation({summary:&quot;fetches user on base of id and queries&quot;})
+    @ApiResponse({status:200,description:&quot;user fetched sucessfully&quot;})
     @ApiQuery({name:&quot;limit&quot;,type:&quot;number&quot;,required:false,example:12,description:&quot;number of entries return for queries&quot;})
     @ApiQuery({name:&quot;page&quot;,type:&quot;number&quot;,required:false,example:123,description:&quot;number of pages return for queries&quot;})
     public getUsers(@Param() getUserParamsDto:GetUserParamsDto, @Query(&#x27;limit&#x27;,new DefaultValuePipe(10),ParseIntPipe) limit:number,@Query(&#x27;page&#x27;,ParseIntPipe) page:number){
-        return this.userService.findOneById(getUserParamsDto.id)
+        return this.userService.getAllUsers(getUserParamsDto,limit,page)
     }
+
+    @Get(&#x27;/user/:id&#x27;)
+    @ApiOperation({summary:&quot;fetches user on base of id&quot;})
+    @ApiResponse({status:200,description:&quot;user fetched sucessfully&quot;})
+    public getUser(@Param(&#x27;id&#x27;,ParseIntPipe) id:number){
+        return this.userService.findOneById(id)
+    }
+
+
     @Post()
+    @ApiOperation({summary:&quot;creates a new user &quot;})
+    @ApiResponse({status:200,description:&quot;user created sucessfully&quot;})
     public createUsers(@Body() createUserDtO:CreateUserDtO){
-        console.log(createUserDtO,&quot;body&quot;)
-        return &quot;create user api was request&quot;
+        return this.userService.createUser(createUserDtO)
     }
     @Patch()
     public updateUsers(@Body() updateUserDto:UpdateUserDto){

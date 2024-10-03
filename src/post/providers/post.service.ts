@@ -1,4 +1,4 @@
-import { Body, Injectable } from "@nestjs/common";
+import { BadRequestException, Body, Injectable, RequestTimeoutException } from "@nestjs/common";
 import { UserService } from "src/users/providers/user.services";
 import { CreatePostDto } from "../dtos/create-post.dto";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -76,9 +76,38 @@ export class PostService{
     }
 
     public async update(patchPostDto:PatchPostDto){
-        let tags=await this.tagsService.findMultipleTags(patchPostDto.tags)
 
-        let post =await this.postRepository.findOneBy({id:patchPostDto.id})
+        let tags=undefined;
+        let post=undefined;
+        try{
+         tags=await this.tagsService.findMultipleTags(patchPostDto.tags)
+        }catch(err){
+            throw new RequestTimeoutException(
+                ['unable to process your request, try again later'],
+                {
+                    description:`Something went wrong. errorCode [usrcrte1] ${err}`
+                }
+            )
+        }
+
+        if(!tags || tags.length!==patchPostDto.tags.length){
+            throw new BadRequestException('Please check your tag ids and ensure they are correct')
+        }
+
+        try{
+         post =await this.postRepository.findOneBy({id:patchPostDto.id})
+        }catch(err){
+            throw new RequestTimeoutException(
+                ['unable to process your request, try again later'],
+                {
+                    description:`Something went wrong. errorCode [usrcrte1] ${err}`
+                }
+            )
+        }
+
+        if(!post){
+            throw new BadRequestException('this post dose not exist')
+        }
 
         post.title=patchPostDto.title??post.title;
         post.postType=patchPostDto.postType??post.postType;
@@ -90,7 +119,18 @@ export class PostService{
         post.publishedOn=patchPostDto.publishedOn??post.publishedOn;
         post.tags=tags;
 
-        return await this.postRepository.save(post)
+
+        try{
+            await this.postRepository.save(post)
+        }catch(err){
+            throw new RequestTimeoutException(
+                ['unable to process your request, try again later'],
+                {
+                    description:`Something went wrong. errorCode [usrcrte1] ${err}`
+                }
+            )
+        }
+        return post
 
     }
 }

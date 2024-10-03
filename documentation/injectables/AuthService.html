@@ -155,54 +155,6 @@
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/auth/providers/auth.service.ts:5</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>userService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section data-compodoc="block-methods">
     
@@ -231,8 +183,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/auth/providers/auth.service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="11"
+                                    class="link-to-prism">src/auth/providers/auth.service.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -300,8 +252,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="11"
-                                    class="link-to-prism">src/auth/providers/auth.service.ts:11</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="7"
+                                    class="link-to-prism">src/auth/providers/auth.service.ts:7</a></div>
                         </td>
                     </tr>
 
@@ -382,14 +334,9 @@ import { UserService } from &#x27;src/users/providers/user.services&#x27;;
 
 @Injectable()
 export class AuthService {
-    constructor(
-        @Inject(forwardRef(()&#x3D;&gt;UserService))
 
-        private readonly userService:UserService
-    ){}
     public login(email:string,password:string,id:number){
         console.log(email,password,id)
-        const user&#x3D;this.userService.findOneById(id)
         return &quot;logged in sucessfully&quot;
     }
     public isAuth(id:number){

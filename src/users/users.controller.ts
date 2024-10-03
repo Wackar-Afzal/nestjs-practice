@@ -19,6 +19,13 @@ export class UsersController {
         return this.userService.getAllUsers(getUserParamsDto,limit,page)
     }
 
+    @Get('/user/:id')
+    @ApiOperation({summary:"fetches user on base of id"})
+    @ApiResponse({status:200,description:"user fetched sucessfully"})
+    public getUser(@Param('id',ParseIntPipe) id:number){
+        return this.userService.findOneById(id)
+    }
+
 
     @Post()
     @ApiOperation({summary:"creates a new user "})

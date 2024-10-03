@@ -79,19 +79,16 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content controller">
                    <div class="content-data">
 
 
 
 
 
-
-
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >UserService</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >TagsController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -115,17 +112,18 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/providers/user.services.ts</code>
+            <code>src/tags/tags.controller.ts</code>
         </p>
 
-
             <p class="comment">
-                <h3>Description</h3>
+                <h3>Prefix</h3>
             </p>
             <p class="comment">
-                <p>Service that handles operations related to Users.</p>
-
+                <code>tags</code>
             </p>
+
+
+
 
 
 
@@ -143,18 +141,25 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#createUser" >createUser</a>
+                                <a href="#createTag" >createTag</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#findOneById" >findOneById</a>
+                                <a href="#delete" >delete</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
-                                <a href="#getAllUsers" >getAllUsers</a>
+                                <a href="#softDelete" >softDelete</a>
                             </li>
                         </ul>
                     </td>
@@ -168,67 +173,6 @@
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, configService: ConfigService)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/users/providers/user.services.ts:16</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>userRepository</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../entitys/User.html" target="_self" >Repository&lt;User&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>configService</td>
-                                                  
-                                                        <td>
-                                                                    <code>ConfigService</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-
             <section data-compodoc="block-methods">
     
     <h3 id="methods">
@@ -238,35 +182,42 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createUser"></a>
+                    <a name="createTag"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
-                            <span class="modifier">Async</span>
-                        <span ><b>createUser</b></span>
-                        <a href="#createUser"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>createTag</b></span>
+                        <a href="#createTag"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createUser(createUserDto: <a href="../classes/CreateUserDtO.html" target="_self">CreateUserDtO</a>)</code>
+                    <code>createTag(createtag: <a href="../classes/CreateTagDto.html" target="_self">CreateTagDto</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;creates new tag for a specific post&#x27;})<br />@ApiResponse({status: 201, description: &#x27;you get a response of 201 if your tags are created&#x27;})<br />@Post()<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/users/providers/user.services.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="14"
+                                    class="link-to-prism">src/tags/tags.controller.ts:14</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>create a new user</p>
-</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -281,9 +232,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>createUserDto</td>
+                                                <td>createtag</td>
                                             <td>
-                                                            <code><a href="../classes/CreateUserDtO.html" target="_self" >CreateUserDtO</a></code>
+                                                            <code><a href="../classes/CreateTagDto.html" target="_self" >CreateTagDto</a></code>
                                             </td>
 
                                             <td>
@@ -296,7 +247,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
@@ -310,35 +261,42 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findOneById"></a>
+                    <a name="delete"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
-                            <span class="modifier">Async</span>
-                        <span ><b>findOneById</b></span>
-                        <a href="#findOneById"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>delete</b></span>
+                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;deletes tag and removes post relation also&#x27;})<br />@ApiResponse({status: 201, description: &#x27;you get a response of 201 if your tags are deleted&#x27;})<br />@Delete()<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="99"
-                                    class="link-to-prism">src/users/providers/user.services.ts:99</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/tags/tags.controller.ts:21</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>getting single user by using user unique id</p>
-</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -368,7 +326,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
@@ -382,34 +340,42 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getAllUsers"></a>
+                    <a name="softDelete"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
-                        <span ><b>getAllUsers</b></span>
-                        <a href="#getAllUsers"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>softDelete</b></span>
+                        <a href="#softDelete"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getAllUsers(getUserParamsDto: <a href="../classes/GetUserParamsDto.html" target="_self">GetUserParamsDto</a>, limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>softDelete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;soft deletes tag and removes post relation also&#x27;})<br />@ApiResponse({status: 201, description: &#x27;you get a response of 201 if your tags are soft deleted&#x27;})<br />@Delete(&#x27;soft-delete&#x27;)<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/users/providers/user.services.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/tags/tags.controller.ts:29</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Fetches all users.</p>
-</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -420,30 +386,11 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>getUserParamsDto</td>
-                                            <td>
-                                                            <code><a href="../classes/GetUserParamsDto.html" target="_self" >GetUserParamsDto</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <ul>
-<li>Parameters for getting users.</li>
-</ul>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>limit</td>
+                                                <td>id</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
@@ -453,174 +400,65 @@
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>Maximum number of users to fetch.</li>
-</ul>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>page</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <ul>
-<li>Page number for pagination.</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>{}</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>A list of users.</p>
-
+                                
                             </div>
                 </td>
             </tr>
         </tbody>
     </table>
-</section>
-
-    </div>
+</section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, forwardRef, Inject, Injectable, RequestTimeoutException } from &quot;@nestjs/common&quot;;
-import { GetUserParamsDto } from &quot;../dtos/get-user-params.dto&quot;;
-import { AuthService } from &quot;src/auth/providers/auth.service&quot;;
-import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
-import { User } from &quot;../user.entity&quot;;
-import { Repository } from &quot;typeorm&quot;;
-import { CreateUserDtO } from &quot;../dtos/create-user.dto&quot;;
-import { ConfigService } from &quot;@nestjs/config&quot;;
-import { TimeoutError } from &quot;rxjs&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, ParseIntPipe, Post, Query } from &#x27;@nestjs/common&#x27;;
+import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import { CreateTagDto } from &#x27;./dtos/create-tag.dto&#x27;;
+import { TagService } from &#x27;./providers/tag.service&#x27;;
 
-    /**
-     * Service that handles operations related to Users.
-     */
+@Controller(&#x27;tags&#x27;)
+@ApiTags(&#x27;tags&#x27;)
+export class TagsController {
+    constructor(private readonly tagService:TagService){}
 
-@Injectable()
-export class UserService{
-
-
-    constructor(
-            /**
-     * injecting user repository
-     * @param userRepository 
-     */
-
-        @InjectRepository(User)
-        private userRepository:Repository&lt;User&gt;,
-    /**
-     * injecting config service
-     * @param userRepository 
-     */
-
-    private readonly configService:ConfigService,
-
-){}
-
-/**
- * create a new user
- * @param createUserDto 
- */
-public async createUser(createUserDto:CreateUserDtO){
-    let existingUser&#x3D;undefined
-
-    try{
-        existingUser&#x3D;await this.userRepository.findOne({
-            where:{email:createUserDto.email}
-            })
-    }catch(err){
-        throw new RequestTimeoutException(
-            [&#x27;unable to process your request, try again later&#x27;],
-            {
-                description:&#x60;Something went wrong. errorCode [usrcrte1] ${err}&#x60;
-            }
-        )
+    @ApiOperation({summary:&quot;creates new tag for a specific post&quot;})
+    @ApiResponse({status:201,description:&quot;you get a response of 201 if your tags are created&quot;})
+    @Post()
+    public createTag(@Body() createtag:CreateTagDto){
+        return this.tagService.create(createtag)
     }
 
-    /**
-     * already registered email exception
-     */
-    if(existingUser){
-        throw new BadRequestException([&#x27;This email is already registered. please login using that email&#x27;])
+    @ApiOperation({summary:&quot;deletes tag and removes post relation also&quot;})
+    @ApiResponse({status:201,description:&quot;you get a response of 201 if your tags are deleted&quot;})
+    @Delete()
+    public delete(@Query(&#x27;id&#x27;,ParseIntPipe)id:number){
+        return this.tagService.delete(id)
+
     }
 
-    let newUser&#x3D; this.userRepository.create(createUserDto)
-    try{
-        newUser&#x3D;await this.userRepository.save(newUser)
-    }catch(err){
-        throw new RequestTimeoutException([&#x27;unable to process this request, please try again later&#x27;],{
-            description:&#x60;something went wrong, errorCode [usrcrte2] ${err}&#x60;,
-            
-        })
+    @ApiOperation({summary:&quot;soft deletes tag and removes post relation also&quot;})
+    @ApiResponse({status:201,description:&quot;you get a response of 201 if your tags are soft deleted&quot;})
+    @Delete(&#x27;soft-delete&#x27;)
+    public softDelete(@Query(&#x27;id&#x27;,ParseIntPipe)id:number){
+        return this.tagService.softDelete(id)
+
     }
-    
-     return newUser
+
 }
-   /**
-     * Fetches all users.
-     * @param getUserParamsDto - Parameters for getting users.
-     * @param limit - Maximum number of users to fetch.
-     * @param page - Page number for pagination.
-     * @returns A list of users.
-     */
-    public getAllUsers(getUserParamsDto:GetUserParamsDto,limit:number,page:number){
-
-        const environment&#x3D;this.configService.get&lt;string&gt;(&#x27;URLD&#x27;)
-        console.log(environment,&quot;environment&quot;)
-
-        return[
-            {name:&quot;waqar&quot;,
-             email:&quot;waqar@wa.com&quot;
-            },
-            {name:&quot;wiqi&quot;,
-                email:&quot;wiqir@wa.com&quot;
-            },
-        ]
-    }
-    /**
-     * getting single user by using user unique id 
-     */
-    public async findOneById(id:number){
-        let user&#x3D;undefined;
-        try{
-             user&#x3D;await this.userRepository.findOneBy({id})
-        }catch(err){
-            throw new RequestTimeoutException([&#x27;unable to process this request, please try again later&#x27;],{
-                description:&#x60;something went wrong, errorCode [usrfnde1] ${err}&#x60;,
-                
-            })
-        }
-    /**
-     * user not registered email exception
-     */
-        if(user){
-            return user
-        }else{
-            throw new BadRequestException(&#x27;The request user is not registered.&#x27;)
-        }
-    }
-
-}</code></pre>
+</code></pre>
     </div>
-
 </div>
+
+
+
 
 
 
@@ -659,8 +497,8 @@ public async createUser(createUserDto:CreateUserDtO){
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'TagsController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
